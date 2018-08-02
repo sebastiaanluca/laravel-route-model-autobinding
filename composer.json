@@ -1,0 +1,54 @@
+{
+    "name": "sebastiaanluca/laravel-route-model-autobinding",
+    "type": "library",
+    "description": "Automatically bind Eloquent models to be used as route segments.",
+    "keywords": [
+        "laravel",
+        "model",
+        "eloquent",
+        "route",
+        "binding"
+    ],
+    "homepage": "https://github.com/sebastiaanluca/laravel-route-model-autobinding",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastiaan Luca",
+            "email": "hello@sebastiaanluca.com",
+            "homepage": "https://www.sebastiaanluca.com",
+            "role": "Author"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^5.6",
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "kint-php/kint": "^2.2",
+        "orchestra/testbench": "^3.6",
+        "phpunit/phpunit": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "SebastiaanLuca\\RouteModelAutobinding\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SebastiaanLuca\\RouteModelAutobinding\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SebastiaanLuca\\RouteModelAutobinding\\RouteModelAutobindingServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}
