@@ -3,11 +3,12 @@
     "type": "library",
     "description": "Automatically bind Eloquent models to be used as route segments.",
     "keywords": [
+        "bind",
+        "eloquent",
         "laravel",
         "model",
-        "eloquent",
-        "route",
-        "binding"
+        "php",
+        "route"
     ],
     "homepage": "https://github.com/sebastiaanluca/laravel-route-model-autobinding",
     "license": "MIT",
