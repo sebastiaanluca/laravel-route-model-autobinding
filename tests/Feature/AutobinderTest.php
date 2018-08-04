@@ -44,11 +44,11 @@ class AutobinderTest extends TestCase
             'App\Models\SomethingInherited',
             'App\Models\User',
             'MyModule\Models\Address',
-            'MyPackage\Models\Thing',
             'MyPackage\Models\Sub\Package',
+            'MyPackage\Models\Thing',
         ];
 
-        $this->assertSame($expected, $models);
+        $this->assertArraySubset($expected, $models);
     }
 
     /**
