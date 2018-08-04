@@ -8,6 +8,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Routing\Router;
 use Mockery\MockInterface;
 use SebastiaanLuca\RouteModelAutobinding\Autobinder;
+use SebastiaanLuca\RouteModelAutobinding\CaseTypes;
 use SebastiaanLuca\RouteModelAutobinding\Tests\MocksInstances;
 use SebastiaanLuca\RouteModelAutobinding\Tests\TestCase;
 
@@ -40,7 +41,7 @@ class AutobinderCaseTest extends TestCase
     {
         $router = $this->getRouter();
 
-        config()->set('route-model-autobinding.case', 'camel');
+        config()->set('route-model-autobinding.case', CaseTypes::CAMEL_CASE);
 
         $router->shouldReceive('model')->with('somethingInherited', 'App\\Models\\SomethingInherited');
         $router->shouldReceive('model')->with('user', 'App\\Models\\User');
@@ -58,7 +59,7 @@ class AutobinderCaseTest extends TestCase
     {
         $router = $this->getRouter();
 
-        config()->set('route-model-autobinding.case', 'snake');
+        config()->set('route-model-autobinding.case', CaseTypes::SNAKE_CASE);
 
         $router->shouldReceive('model')->with('something_inherited', 'App\\Models\\SomethingInherited');
         $router->shouldReceive('model')->with('user', 'App\\Models\\User');
@@ -76,7 +77,7 @@ class AutobinderCaseTest extends TestCase
     {
         $router = $this->getRouter();
 
-        config()->set('route-model-autobinding.case', 'studly');
+        config()->set('route-model-autobinding.case', CaseTypes::STUDLY_CASE);
 
         $router->shouldReceive('model')->with('SomethingInherited', 'App\\Models\\SomethingInherited');
         $router->shouldReceive('model')->with('User', 'App\\Models\\User');

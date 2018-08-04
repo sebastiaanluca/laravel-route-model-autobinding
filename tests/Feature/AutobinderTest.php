@@ -59,7 +59,7 @@ class AutobinderTest extends TestCase
         $path = app(Autobinder::class)->getCachePath();
 
         $this->assertSame(
-            __DIR__ . '/../resources/bootstrap/cache/autobinding.php',
+            base_path('bootstrap/cache/autobinding.php'),
             $path
         );
     }
