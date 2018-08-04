@@ -1,11 +1,13 @@
 <?php
 
+use SebastiaanLuca\RouteModelAutobinding\CaseTypes;
+
 return [
 
     /**
-     * The type of string casing to convert each model class name to.
+     * The case type to use when generating a model alias.
      * Options are: camel, snake, and studly. Defaults to `camel`.
      */
-    'case' => 'camel',
+    'case' => CaseTypes::CAMEL_CASE,
 
 ];

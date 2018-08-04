@@ -165,13 +165,13 @@ class Autobinder
         $basename = class_basename($model);
 
         switch (config('route-model-autobinding.case')) {
-            case 'snake':
+            case CaseTypes::SNAKE_CASE:
                 return snake_case($basename);
 
-            case 'studly':
+            case CaseTypes::STUDLY_CASE:
                 return studly_case($basename);
 
-            case 'camel':
+            case CaseTypes::CAMEL_CASE:
             default:
                 return camel_case($basename);
         }
