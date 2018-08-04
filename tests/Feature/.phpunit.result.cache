@@ -1,1 +1,0 @@
-C:30:"PHPUnit\Runner\TestResultCache":284:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:4:{s:49:"it binds all models using the default case";d:0.047;s:42:"it binds all models using camel case";d:0.005;s:42:"it binds all models using snake case";d:0.004;s:43:"it binds all models using studly case";d:0.005;}}}
