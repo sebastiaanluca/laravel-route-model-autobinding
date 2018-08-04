@@ -12,13 +12,15 @@
 
 **A Laravel package that automatically registers all your Eloquent models as route segment variables.**
 
-TODO: full description
+TODO: short intro (Why should I install this package?)
 
 - Medium to large apps: lots of models
 - Need to bind and alias them all separately in the route service provider
 - Need to do the same (and can't forget) for each new, changed, or deleted model
 - Hard to maintain, easy to forget
-- This package scans all your model directories (from composer.json PSR-4 autoload section) and does the grunt work for you
+- This package scans all your model directories (from composer.json PSR-4 autoload section) and does the grunt work for you; Route::model()
+- So instead of tens or hundreds of Route::model() calls in your service provider, install this package and be done with it
+
 - Still allows you to override certain aliases
 - Cache command to read bindings from a static file and speed up app in production
 
@@ -50,11 +52,29 @@ composer require sebastiaanluca/laravel-route-model-autobinding
 
 ## How to use
 
-### PSR-4 namespaces
+### Defining model namespaces
 
 - `composer.json`
+- PSR-4 namespaces
+- By default `App\\` already defined so usually no further action required
+- Only requirement
+- Only loads models from there that exist in a Models/ directory; automatically when on app boot
+
+### Route segment variables
+
+- Same as always, just don't have to register each model anymore
+- Example on how to use in a route
+- Link to Laravel docs
+
+### Caching bindings for production
+
+- `autobinding:cache`
+- Variable casing can still be changed after caching
+- `autobinding:clear` to remove the cached bindings
 
 ### Configuration
+
+- Publishing configuration
 
 #### Casing
 

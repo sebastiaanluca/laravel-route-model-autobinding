@@ -5,21 +5,21 @@ namespace SebastiaanLuca\RouteModelAutobinding\Commands;
 use Illuminate\Console\Command;
 use SebastiaanLuca\RouteModelAutobinding\Autobinder;
 
-class CacheRouteModels extends Command
+class ClearCachedRouteModels extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'autobinding:cache';
+    protected $signature = 'autobinding:clear';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a cache file for faster route model binding';
+    protected $description = 'Remove the route model binding cache file';
 
     /**
      * @var \SebastiaanLuca\RouteModelAutobinding\Autobinder
@@ -45,15 +45,8 @@ class CacheRouteModels extends Command
      */
     public function handle() : void
     {
-        $models = $this->binder->getModels();
+        @unlink($this->binder->getCachePath());
 
-        $cache = $this->binder->getCachePath();
-
-        file_put_contents(
-            $cache,
-            '<?php return ' . var_export($models, true) . ';'
-        );
-
-        $this->info('Route model bindings cached!');
+        $this->info('Route model bindings cleared!');
     }
 }

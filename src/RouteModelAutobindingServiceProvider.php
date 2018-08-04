@@ -6,6 +6,7 @@ namespace SebastiaanLuca\RouteModelAutobinding;
 
 use Illuminate\Support\ServiceProvider;
 use SebastiaanLuca\RouteModelAutobinding\Commands\CacheRouteModels;
+use SebastiaanLuca\RouteModelAutobinding\Commands\ClearCachedRouteModels;
 
 class RouteModelAutobindingServiceProvider extends ServiceProvider
 {
@@ -21,7 +22,10 @@ class RouteModelAutobindingServiceProvider extends ServiceProvider
             $this->getShortPackageName()
         );
 
-        $this->commands(CacheRouteModels::class);
+        $this->commands(
+            CacheRouteModels::class,
+            ClearCachedRouteModels::class
+        );
     }
 
     /**
