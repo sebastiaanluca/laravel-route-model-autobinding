@@ -3,21 +3,18 @@
 namespace SebastiaanLuca\RouteModelAutobinding\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use SebastiaanLuca\RouteModelAutobinding\RouteModelAutobindingServiceProvider;
 
 class TestCase extends BaseTestCase
 {
     /**
-     * Get package providers.
+     * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application $app
+     * @param \Illuminate\Foundation\Application $app
      *
-     * @return array
+     * @return void
      */
-    protected function getPackageProviders($app) : array
+    protected function getEnvironmentSetUp($app) : void
     {
-        return [
-            RouteModelAutobindingServiceProvider::class,
-        ];
+        app()->setBasePath(__DIR__ . '/resources');
     }
 }

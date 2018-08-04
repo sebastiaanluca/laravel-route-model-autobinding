@@ -26,6 +26,7 @@
     },
     "require-dev": {
         "kint-php/kint": "^2.2",
+        "mockery/mockery": "^1.1",
         "orchestra/testbench": "^3.6",
         "phpunit/phpunit": "^7.3"
     },
@@ -36,7 +37,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SebastiaanLuca\\RouteModelAutobinding\\Tests\\": "tests"
+            "SebastiaanLuca\\RouteModelAutobinding\\Tests\\": "tests",
+            "App\\": "tests/resources/app/",
+            "MyModule\\": "tests/resources/modules/MyModule/",
+            "MyPackage\\": "tests/resources/MyPackage/src/"
         }
     },
     "config": {
