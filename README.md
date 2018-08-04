@@ -50,11 +50,15 @@ composer require sebastiaanluca/laravel-route-model-autobinding
 
 ## How to use
 
-TODO
+### PSR-4 namespaces
 
-- Only do this once if you have a base App (domain) model that every other model extends from
-- Override a method to change the name (casing unchanged)
-- Change config to change casing
+- `composer.json`
+
+### Configuration
+
+#### Casing
+
+- camel (default), snake, studly
 
 ## License
 
