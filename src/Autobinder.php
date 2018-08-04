@@ -31,16 +31,50 @@ class Autobinder
      */
     public function bindAll() : void
     {
+        if ($this->useCache()) {
+            return;
+        }
+
+        $models = $this->getModels();
+
+        $this->bindRouteModels($models);
+    }
+
+    /**
+     * @return array
+     */
+    public function getModels() : array
+    {
         $config = $this->getComposerConfig();
         $paths = $this->getModelPaths($config);
 
         if (empty($paths)) {
-            return;
+            return [];
         }
 
-        $models = $this->getModels($paths);
+        return $this->scan($paths);
+    }
 
-        $this->bindRouteModels($models);
+    /**
+     * @return string
+     */
+    public function getCachePath() : string
+    {
+        return base_path('bootstrap/cache/autobinding.php');
+    }
+
+    /**
+     * @return bool
+     */
+    protected function useCache() : bool
+    {
+        if (! file_exists($cache = $this->getCachePath())) {
+            return false;
+        }
+
+        $this->bindRouteModels(require $cache);
+
+        return true;
     }
 
     /**
@@ -79,7 +113,7 @@ class Autobinder
      *
      * @return array
      */
-    protected function getModels(array $paths) : array
+    protected function scan(array $paths) : array
     {
         $models = [];
 

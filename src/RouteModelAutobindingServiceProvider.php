@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SebastiaanLuca\RouteModelAutobinding;
 
 use Illuminate\Support\ServiceProvider;
+use SebastiaanLuca\RouteModelAutobinding\Commands\CacheRouteModels;
 
 class RouteModelAutobindingServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,12 @@ class RouteModelAutobindingServiceProvider extends ServiceProvider
      */
     public function register() : void
     {
-        $this->configure();
+        $this->mergeConfigFrom(
+            $this->getConfigurationPath(),
+            $this->getShortPackageName()
+        );
+
+        $this->commands(CacheRouteModels::class);
     }
 
     /**
@@ -28,17 +34,6 @@ class RouteModelAutobindingServiceProvider extends ServiceProvider
         $this->registerPublishableResources();
 
         app(Autobinder::class)->bindAll();
-    }
-
-    /**
-     * Register the package configuration.
-     */
-    private function configure() : void
-    {
-        $this->mergeConfigFrom(
-            $this->getConfigurationPath(),
-            $this->getShortPackageName()
-        );
     }
 
     /**
