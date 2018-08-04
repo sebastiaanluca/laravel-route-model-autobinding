@@ -125,6 +125,10 @@ class Autobinder
                         str_after($file->getPathname(), 'Models' . DIRECTORY_SEPARATOR)
                     );
 
+                if (! class_exists($model)) {
+                    continue;
+                }
+
                 $reflection = new ReflectionClass($model);
 
                 if ($reflection->isAbstract() || ! is_subclass_of($model, Model::class)) {
