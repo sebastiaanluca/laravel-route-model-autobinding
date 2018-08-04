@@ -8,16 +8,19 @@
 <a href="https://blog.sebastiaanluca.com"><img src="https://img.shields.io/badge/link-blog-lightgrey.svg" alt="Read my blog"></img></a>
 <a href="https://packagist.org/packages/sebastiaanluca"><img src="https://img.shields.io/badge/link-other_packages-lightgrey.svg" alt="View my other packages and projects"></img></a>
 <a href="https://twitter.com/sebastiaanluca"><img src="https://img.shields.io/twitter/follow/sebastiaanluca.svg?style=social" alt="Follow @sebastiaanluca on Twitter"></img></a>
-<a href="https://twitter.com/intent/tweet?text=A%20lightweight%20Laravel%20package%20to%20split%20your%20code%20into%20individual%20modules.%20Via%20@sebastiaanluca%20https://github.com/sebastiaanluca/laravel-route-model-autobinding"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Share this package on Twitter"></img></a>
+<a href="https://twitter.com/intent/tweet?text=Automatically%20bind%20Eloquent%20models%20to%20be%20used%20as%20route%20segments.%20Via%20@sebastiaanluca%20https://github.com/sebastiaanluca/laravel-route-model-autobinding"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Share this package on Twitter"></img></a>
 
-**An opinionated Laravel package that allows you to enable automatic route model binding on a per-model level.**
+**A Laravel package that automatically registers all your Eloquent models as route segment variables.**
 
 TODO: full description
 
 - Medium to large apps: lots of models
 - Need to bind and alias them all separately in the route service provider
 - Need to do the same (and can't forget) for each new, changed, or deleted model
-- This package improves upon that by moving the responsibility to model itself to maintain correct context
+- Hard to maintain, easy to forget
+- This package scans all your model directories (from composer.json PSR-4 autoload section) and does the grunt work for you
+- Still allows you to override certain aliases
+- Cache command to read bindings from a static file and speed up app in production
 
 ## Table of contents
 
