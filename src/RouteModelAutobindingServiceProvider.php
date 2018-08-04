@@ -10,18 +10,24 @@ class RouteModelAutobindingServiceProvider extends ServiceProvider
 {
     /**
      * Register the application services.
+     *
+     * @return void
      */
     public function register() : void
     {
-        //
+        $this->configure();
     }
 
     /**
      * Bootstrap the application services.
+     *
+     * @return void
      */
     public function boot() : void
     {
         $this->registerPublishableResources();
+
+        app(Autobinder::class)->bindAll();
     }
 
     /**
