@@ -105,7 +105,7 @@ Route::get('carts/{shoppingCart}', ShowShoppingCart::class);
 
 Besides scanning and aliasing your models for you, this package alters no native Laravel functionality. Therefore, see the Laravel documentation on how to use [route model injection](https://laravel.com/docs/5.6/routing#route-model-binding).
 
-### Caching bindings for production
+### Caching bindings in production
 
 To cache all bindings and speed up your application in production, add the cache command to your deploy scripts:
 
