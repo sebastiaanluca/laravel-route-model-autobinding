@@ -10,14 +10,14 @@ use SebastiaanLuca\RouteModelAutobinding\Autobinder;
 use SebastiaanLuca\RouteModelAutobinding\Tests\MocksInstances;
 use SebastiaanLuca\RouteModelAutobinding\Tests\TestCase;
 
-class AutobinderTest extends TestCase
+class AutobinderCacheTest extends TestCase
 {
     use MocksInstances;
 
     /**
      * @test
      */
-    public function it binds all models() : void
+    public function it doesnt read from cache when not cached() : void
     {
         $router = $this->mock(
             Router::class,
@@ -36,34 +36,37 @@ class AutobinderTest extends TestCase
     /**
      * @test
      */
-    public function it returns all models() : void
+    public function it reads from cache when cached() : void
     {
-        $models = app(Autobinder::class)->getModels();
+        $cachePath = base_path('bootstrap/cache');
+        $cacheFile = base_path('bootstrap/cache/autobinding.php');
 
-        $expected = [
-            'App\Models\SomethingInherited',
-            'App\Models\User',
-            'MyModule\Models\Address',
-            'MyPackage\Models\Sub\Package',
-            'MyPackage\Models\Thing',
-        ];
-
-        $this->assertArraySubset($expected, $models);
-    }
-
-    /**
-     * @test
-     */
-    public function it returns the cache path() : void
-    {
-        $path = app(Autobinder::class)->getCachePath();
-
-        $this->assertSame(
-            base_path('bootstrap/cache/autobinding.php'),
-            $path
+        $router = $this->mock(
+            Router::class,
+            [app(Dispatcher::class)]
         );
-    }
 
-    // TODO: AutobinderCacheCommandTest
-    // TODO: AutobinderClearCacheCommandTest
+        $router->shouldReceive('model')->with('somethingCached', 'App\\Models\\SomethingCached');
+        $router->shouldReceive('model')->with('cachedUser', 'App\\Models\\CachedUser');
+
+        $create = mkdir(
+            $cachePath,
+            0775,
+            true
+        );
+
+        $copy = copy(
+            base_path('cache.php'),
+            $cacheFile
+        );
+
+        $this->assertTrue($create);
+        $this->assertTrue($copy);
+
+        app(Autobinder::class)->bindAll();
+
+        unlink($cacheFile);
+        rmdir($cachePath);
+        rmdir(base_path('bootstrap'));
+    }
 }
