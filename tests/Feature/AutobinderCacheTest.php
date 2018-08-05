@@ -6,6 +6,7 @@ namespace SebastiaanLuca\RouteModelAutobinding\Tests\Feature;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Routing\Router;
+use Mockery\MockInterface;
 use SebastiaanLuca\RouteModelAutobinding\Autobinder;
 use SebastiaanLuca\RouteModelAutobinding\Tests\MocksInstances;
 use SebastiaanLuca\RouteModelAutobinding\Tests\TestCase;
@@ -19,10 +20,7 @@ class AutobinderCacheTest extends TestCase
      */
     public function it doesnt read from cache when not cached() : void
     {
-        $router = $this->mock(
-            Router::class,
-            [app(Dispatcher::class)]
-        );
+        $router = $this->getRouter();
 
         $router->shouldReceive('model')->with('somethingInherited', 'App\\Models\\SomethingInherited');
         $router->shouldReceive('model')->with('user', 'App\\Models\\User');
@@ -38,35 +36,33 @@ class AutobinderCacheTest extends TestCase
      */
     public function it reads from cache when cached() : void
     {
-        $cachePath = base_path('bootstrap/cache');
-        $cacheFile = base_path('bootstrap/cache/autobinding.php');
+        $cache = base_path('bootstrap/cache/autobinding.php');
 
-        $router = $this->mock(
-            Router::class,
-            [app(Dispatcher::class)]
-        );
+        $router = $this->getRouter();
 
         $router->shouldReceive('model')->with('somethingCached', 'App\\Models\\SomethingCached');
         $router->shouldReceive('model')->with('cachedUser', 'App\\Models\\CachedUser');
 
-        $create = mkdir(
-            $cachePath,
-            0775,
-            true
-        );
-
         $copy = copy(
             base_path('cache.php'),
-            $cacheFile
+            $cache
         );
 
-        $this->assertTrue($create);
         $this->assertTrue($copy);
 
         app(Autobinder::class)->bindAll();
 
-        unlink($cacheFile);
-        rmdir($cachePath);
-        rmdir(base_path('bootstrap'));
+        unlink($cache);
+    }
+
+    /**
+     * @return \Mockery\MockInterface
+     */
+    private function getRouter() : MockInterface
+    {
+        return $this->mock(
+            Router::class,
+            [app(Dispatcher::class)]
+        );
     }
 }

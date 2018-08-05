@@ -63,7 +63,4 @@ class AutobinderTest extends TestCase
             $path
         );
     }
-
-    // TODO: AutobinderCacheCommandTest
-    // TODO: AutobinderClearCacheCommandTest
 }
