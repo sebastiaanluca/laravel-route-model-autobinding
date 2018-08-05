@@ -5,34 +5,39 @@ declare(strict_types=1);
 namespace SebastiaanLuca\RouteModelAutobinding;
 
 use Illuminate\Support\ServiceProvider;
+use SebastiaanLuca\RouteModelAutobinding\Commands\CacheRouteModels;
+use SebastiaanLuca\RouteModelAutobinding\Commands\ClearCachedRouteModels;
 
 class RouteModelAutobindingServiceProvider extends ServiceProvider
 {
     /**
      * Register the application services.
+     *
+     * @return void
      */
     public function register() : void
-    {
-        //
-    }
-
-    /**
-     * Bootstrap the application services.
-     */
-    public function boot() : void
-    {
-        $this->registerPublishableResources();
-    }
-
-    /**
-     * Register the package configuration.
-     */
-    private function configure() : void
     {
         $this->mergeConfigFrom(
             $this->getConfigurationPath(),
             $this->getShortPackageName()
         );
+
+        $this->commands(
+            CacheRouteModels::class,
+            ClearCachedRouteModels::class
+        );
+    }
+
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot() : void
+    {
+        $this->registerPublishableResources();
+
+        app(Autobinder::class)->bindAll();
     }
 
     /**
