@@ -99,7 +99,7 @@ class Autobinder
         $paths = collect($paths)
             ->unique()
             ->mapWithKeys(function (string $path, string $namespace) {
-                return [$namespace . 'Models\\' => base_path($path) . 'Models'];
+                return [$namespace => base_path(rtrim($path, '/'))];
             })
             ->filter(function (string $path) {
                 return is_dir($path);
@@ -122,7 +122,7 @@ class Autobinder
                 $model = $namespace . str_replace(
                         ['/', '.php'],
                         ['\\', ''],
-                        str_after($file->getPathname(), 'Models' . DIRECTORY_SEPARATOR)
+                        str_after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
                     );
 
                 if (! class_exists($model)) {

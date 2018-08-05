@@ -24,8 +24,8 @@ class AutobinderTest extends TestCase
             [app(Dispatcher::class)]
         );
 
+        $router->shouldReceive('model')->with('user', 'App\\User');
         $router->shouldReceive('model')->with('somethingInherited', 'App\\Models\\SomethingInherited');
-        $router->shouldReceive('model')->with('user', 'App\\Models\\User');
         $router->shouldReceive('model')->with('address', 'MyModule\\Models\\Address');
         $router->shouldReceive('model')->with('thing', 'MyPackage\\Models\\Thing');
         $router->shouldReceive('model')->with('package', 'MyPackage\\Models\\Sub\\Package');
@@ -41,11 +41,11 @@ class AutobinderTest extends TestCase
         $models = app(Autobinder::class)->getModels();
 
         $expected = [
-            'App\Models\SomethingInherited',
-            'App\Models\User',
-            'MyModule\Models\Address',
-            'MyPackage\Models\Sub\Package',
-            'MyPackage\Models\Thing',
+            'App\\User',
+            'App\\Models\\SomethingInherited',
+            'MyModule\\Models\\Address',
+            'MyPackage\\Models\\Sub\\Package',
+            'MyPackage\\Models\\Thing',
         ];
 
         $this->assertArraySubset($expected, $models);

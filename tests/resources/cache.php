@@ -1,4 +1,4 @@
 <?php return array (
-  0 => 'App\\Models\\SomethingCached',
+  0 => 'App\\SomethingCached',
   1 => 'App\\Models\\CachedUser',
 );

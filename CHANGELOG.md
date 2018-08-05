@@ -20,3 +20,4 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Ignore abstract classes
 - Ignore plain PHP files
 - Include models that inherit Eloquent model higher up the chain
+- Read root namespace directories instead of Models/

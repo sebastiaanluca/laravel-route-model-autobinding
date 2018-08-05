@@ -25,8 +25,8 @@ class AutobinderCaseTest extends TestCase
 
         config()->set('route-model-autobinding.case', null);
 
+        $router->shouldReceive('model')->with('user', 'App\\User');
         $router->shouldReceive('model')->with('somethingInherited', 'App\\Models\\SomethingInherited');
-        $router->shouldReceive('model')->with('user', 'App\\Models\\User');
         $router->shouldReceive('model')->with('address', 'MyModule\\Models\\Address');
         $router->shouldReceive('model')->with('thing', 'MyPackage\\Models\\Thing');
         $router->shouldReceive('model')->with('package', 'MyPackage\\Models\\Sub\\Package');
@@ -43,8 +43,8 @@ class AutobinderCaseTest extends TestCase
 
         config()->set('route-model-autobinding.case', CaseTypes::CAMEL_CASE);
 
+        $router->shouldReceive('model')->with('user', 'App\\User');
         $router->shouldReceive('model')->with('somethingInherited', 'App\\Models\\SomethingInherited');
-        $router->shouldReceive('model')->with('user', 'App\\Models\\User');
         $router->shouldReceive('model')->with('address', 'MyModule\\Models\\Address');
         $router->shouldReceive('model')->with('thing', 'MyPackage\\Models\\Thing');
         $router->shouldReceive('model')->with('package', 'MyPackage\\Models\\Sub\\Package');
@@ -61,8 +61,8 @@ class AutobinderCaseTest extends TestCase
 
         config()->set('route-model-autobinding.case', CaseTypes::SNAKE_CASE);
 
+        $router->shouldReceive('model')->with('user', 'App\\User');
         $router->shouldReceive('model')->with('something_inherited', 'App\\Models\\SomethingInherited');
-        $router->shouldReceive('model')->with('user', 'App\\Models\\User');
         $router->shouldReceive('model')->with('address', 'MyModule\\Models\\Address');
         $router->shouldReceive('model')->with('thing', 'MyPackage\\Models\\Thing');
         $router->shouldReceive('model')->with('package', 'MyPackage\\Models\\Sub\\Package');
@@ -79,8 +79,8 @@ class AutobinderCaseTest extends TestCase
 
         config()->set('route-model-autobinding.case', CaseTypes::STUDLY_CASE);
 
+        $router->shouldReceive('model')->with('User', 'App\\User');
         $router->shouldReceive('model')->with('SomethingInherited', 'App\\Models\\SomethingInherited');
-        $router->shouldReceive('model')->with('User', 'App\\Models\\User');
         $router->shouldReceive('model')->with('Address', 'MyModule\\Models\\Address');
         $router->shouldReceive('model')->with('Thing', 'MyPackage\\Models\\Thing');
         $router->shouldReceive('model')->with('Package', 'MyPackage\\Models\\Sub\\Package');

@@ -22,8 +22,8 @@ class AutobinderCacheTest extends TestCase
     {
         $router = $this->getRouter();
 
+        $router->shouldReceive('model')->with('user', 'App\\User');
         $router->shouldReceive('model')->with('somethingInherited', 'App\\Models\\SomethingInherited');
-        $router->shouldReceive('model')->with('user', 'App\\Models\\User');
         $router->shouldReceive('model')->with('address', 'MyModule\\Models\\Address');
         $router->shouldReceive('model')->with('thing', 'MyPackage\\Models\\Thing');
         $router->shouldReceive('model')->with('package', 'MyPackage\\Models\\Sub\\Package');
@@ -40,7 +40,7 @@ class AutobinderCacheTest extends TestCase
 
         $router = $this->getRouter();
 
-        $router->shouldReceive('model')->with('somethingCached', 'App\\Models\\SomethingCached');
+        $router->shouldReceive('model')->with('somethingCached', 'App\\SomethingCached');
         $router->shouldReceive('model')->with('cachedUser', 'App\\Models\\CachedUser');
 
         $copy = copy(
