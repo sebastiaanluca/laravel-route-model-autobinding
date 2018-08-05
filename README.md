@@ -69,7 +69,7 @@ composer require sebastiaanluca/laravel-route-model-autobinding
 ### Caching bindings for production
 
 - `autobinding:cache`
-- Variable casing can still be changed after caching
+- Route segment variable casing can still be changed after caching
 - `autobinding:clear` to remove the cached bindings
 
 ### Configuration
