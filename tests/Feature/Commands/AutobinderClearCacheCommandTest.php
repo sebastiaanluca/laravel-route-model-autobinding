@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SebastiaanLuca\RouteModelAutobinding\Tests\Feature\Commands;
 
-use SebastiaanLuca\RouteModelAutobinding\Commands\ClearCachedRouteModels;
 use SebastiaanLuca\RouteModelAutobinding\RouteModelAutobindingServiceProvider;
 use SebastiaanLuca\RouteModelAutobinding\Tests\TestCase;
 
@@ -19,7 +18,7 @@ class AutobinderClearCacheCommandTest extends TestCase
 
         $this->assertFileExists($cache);
 
-        $this->artisan(ClearCachedRouteModels::class);
+        $this->artisan('autobinding:clear');
 
         $this->assertFileNotExists($cache);
     }
