@@ -99,7 +99,7 @@ class Autobinder
         $paths = collect($paths)
             ->unique()
             ->mapWithKeys(function (string $path, string $namespace) {
-                return [$namespace . 'Models\\' => base_path($path) . 'Models/'];
+                return [$namespace . 'Models\\' => base_path($path) . 'Models'];
             })
             ->filter(function (string $path) {
                 return is_dir($path);
