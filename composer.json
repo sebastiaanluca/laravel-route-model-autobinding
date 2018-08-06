@@ -49,7 +49,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "SebastiaanLuca\\RouteModelAutobindingServiceProvider"
+                "SebastiaanLuca\\RouteModelAutobinding\\RouteModelAutobindingServiceProvider"
             ]
         }
     },
