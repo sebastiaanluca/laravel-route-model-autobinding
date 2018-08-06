@@ -6,6 +6,12 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+## 1.0.1 (2018-08-06)
+
+### Fixed
+
+- Fixed service provider auto-discovery
+
 ## 1.0.0 (2018-08-06)
 
 ### Added
