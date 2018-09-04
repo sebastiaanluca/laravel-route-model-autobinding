@@ -48,7 +48,7 @@ class AutobinderTest extends TestCase
             'MyPackage\\Models\\Thing',
         ];
 
-        $this->assertArraySubset($expected, $models);
+        $this->assertSameValues($expected, $models);
     }
 
     /**
