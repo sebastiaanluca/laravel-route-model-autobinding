@@ -6,6 +6,8 @@ namespace SebastiaanLuca\RouteModelAutobinding;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use ReflectionClass;
 use Symfony\Component\Finder\Finder;
 
@@ -94,7 +96,7 @@ class Autobinder
      */
     protected function getModelPaths(array $config) : array
     {
-        $paths = array_get($config, 'autoload.psr-4');
+        $paths = Arr::get($config, 'autoload.psr-4');
 
         $paths = collect($paths)
             ->unique()
@@ -122,7 +124,7 @@ class Autobinder
                 $model = $namespace . str_replace(
                         ['/', '.php'],
                         ['\\', ''],
-                        str_after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
+                        Str::after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
                     );
 
                 if (! class_exists($model)) {
@@ -166,14 +168,14 @@ class Autobinder
 
         switch (config('route-model-autobinding.case')) {
             case CaseTypes::SNAKE_CASE:
-                return snake_case($basename);
+                return Str::snake($basename);
 
             case CaseTypes::STUDLY_CASE:
-                return studly_case($basename);
+                return Str::studly($basename);
 
             case CaseTypes::CAMEL_CASE:
             default:
-                return camel_case($basename);
+                return Str::camel($basename);
         }
     }
 }

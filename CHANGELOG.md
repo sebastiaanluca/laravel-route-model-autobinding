@@ -6,6 +6,12 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+## 2.0.1 (2019-03-01)
+
+### Fixed
+
+- Replaced global Laravel helpers with static variants
+
 ## 2.0.0 (2019-03-01)
 
 ### Added
