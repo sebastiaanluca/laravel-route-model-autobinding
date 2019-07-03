@@ -26,7 +26,7 @@
     },
     "require-dev": {
         "kint-php/kint": "^3.0",
-        "mockery/mockery": "^1.2",
+        "mockery/mockery": "^1.2.1",
         "orchestra/testbench": "3.8.*",
         "phpunit/phpunit": "^8.2"
     },
