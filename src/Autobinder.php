@@ -50,7 +50,7 @@ class Autobinder
         $config = $this->getComposerConfig();
         $paths = $this->getModelPaths($config);
 
-        if (empty($paths)) {
+        if (count($paths) === 0) {
             return [];
         }
 
@@ -74,7 +74,7 @@ class Autobinder
             return false;
         }
 
-        $this->bindRouteModels(require $cache);
+        $this->bindRouteModels(include $cache);
 
         return true;
     }
@@ -121,11 +121,13 @@ class Autobinder
 
         foreach ($paths as $namespace => $path) {
             foreach ((new Finder)->in($path)->files() as $file) {
-                $model = $namespace . str_replace(
-                        ['/', '.php'],
-                        ['\\', ''],
-                        Str::after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
-                    );
+                $name = str_replace(
+                    ['/', '.php'],
+                    ['\\', ''],
+                    Str::after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
+                );
+
+                $model = $namespace . $name;
 
                 if (! class_exists($model)) {
                     continue;
@@ -146,6 +148,8 @@ class Autobinder
 
     /**
      * @param array $models
+     *
+     * @return void
      */
     protected function bindRouteModels(array $models) : void
     {
