@@ -62,8 +62,8 @@ Route::get('carts/{shoppingCart}', ShowShoppingCart::class);
 
 ## Requirements
 
-- PHP 7.2 or higher
-- Laravel 5.8 or higher
+- PHP 7.3 or higher
+- Laravel 6.0 or higher
 
 ## How to install
 
