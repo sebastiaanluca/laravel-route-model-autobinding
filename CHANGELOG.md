@@ -4,6 +4,17 @@ All Notable changes to `sebastiaanluca/laravel-route-model-autobinding` will be 
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 4.0.0 (2020-04-24)
+
+### Added
+
+- Added support for Laravel 7
+
+### Removed
+
+- Dropped support for Laravel 5
+- Dropped support for PHP 7.2
+
 ## 3.0.0 (2019-09-06)
 
 ### Added
